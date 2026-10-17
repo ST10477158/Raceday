@@ -14,11 +14,16 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Build Raceday Project Only
+    - name: Clean bad test file from main project
       run: |
-        cd Raceday
-        dotnet build Raceday.csproj --configuration Release --verbosity minimal /p:DefaultItemExcludes=UnitTest1.cs;UnitTest1.cs
-    - name: Run Tests
+        Remove-Item -Path UnitTest1.cs -Force -ErrorAction SilentlyContinue
+        Remove-Item -Path Raceday/UnitTest1.cs -Force -ErrorAction SilentlyContinue
+        Get-ChildItem -Recurse -Filter UnitTest1.cs | Where-Object { $_.FullName -like "*Raceday.csproj*" -or $_.DirectoryName -notlike "*Tests*" } | ForEach-Object { Write-Host "Deleting $($_.FullName)"; Remove-Item $_.FullName -Force }
+      shell: pwsh
+    - name: Restore and Build
       run: |
-        cd Raceday
-        dotnet test RaceDay.Tests.csproj --verbosity normal || dotnet test ../RaceDay.Tests.csproj --verbosity normal || echo "Tests attempted"
+        dotnet restore Raceday.csproj
+        dotnet build Raceday.csproj --no-restore
+    - name: Test
+      run: |
+        dotnet test RaceDay.Tests.csproj --verbosity normal
