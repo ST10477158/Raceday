@@ -16,9 +16,11 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Restore
-      run: dotnet restore Raceday.sln
-    - name: Build
-      run: dotnet build Raceday.sln --no-restore
+    - name: Restore main project
+      run: dotnet restore Raceday.csproj
+    - name: Build main project
+      run: dotnet build Raceday.csproj --no-restore
+    - name: Restore Tests
+      run: dotnet restore RaceDay.Tests.csproj
     - name: Test
-      run: dotnet test Raceday.sln --no-build --verbosity normal
+      run: dotnet test RaceDay.Tests.csproj --no-build --verbosity normal
