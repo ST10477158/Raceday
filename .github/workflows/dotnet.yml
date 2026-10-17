@@ -14,16 +14,9 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Clean bad test file from main project
-      run: |
-        Remove-Item -Path UnitTest1.cs -Force -ErrorAction SilentlyContinue
-        Remove-Item -Path Raceday/UnitTest1.cs -Force -ErrorAction SilentlyContinue
-        Get-ChildItem -Recurse -Filter UnitTest1.cs | Where-Object { $_.FullName -like "*Raceday.csproj*" -or $_.DirectoryName -notlike "*Tests*" } | ForEach-Object { Write-Host "Deleting $($_.FullName)"; Remove-Item $_.FullName -Force }
-      shell: pwsh
-    - name: Restore and Build
-      run: |
-        dotnet restore Raceday.csproj
-        dotnet build Raceday.csproj --no-restore
+    - name: Restore
+      run: dotnet restore Raceday.csproj
+    - name: Build
+      run: dotnet build Raceday.csproj --no-restore
     - name: Test
-      run: |
-        dotnet test RaceDay.Tests.csproj --verbosity normal
+      run: dotnet test RaceDay.Tests.csproj --verbosity normal
