@@ -17,8 +17,8 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore
-      run: dotnet restore
+      run: dotnet restore Raceday.sln
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build Raceday.sln --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test Raceday.sln --no-build --verbosity normal
