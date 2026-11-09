@@ -1,0 +1,7 @@
+﻿@model List<RaceDay.Web.ViewModels.CategoryViewModel>
+<h2>Categories for Event @ViewBag.Event_ID</h2>
+<form asp-action="AddCategory" method="post"><input type="hidden" name="Event_ID" value="@ViewBag.Event_ID" /><input name="Category_Name" placeholder="Category Name" class="form-control mb-2" /><input name="Category_EntryAmount" placeholder="Entry Amount" class="form-control mb-2" /><input name="Category_QualifyAge" placeholder="Qualify Age" class="form-control mb-2" /><button class="btn btn-primary">Add Category</button></form>
+@foreach (var c in Model)
+{
+    <div class="card p-3 mt-2">@c.Category_Name - R@c.Category_EntryAmount - Age @c.Category_QualifyAge</div>
+}

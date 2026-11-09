@@ -1,0 +1,9 @@
+﻿@model RaceDay.Web.ViewModels.RegisterViewModel
+<h2>Register</h2>
+<form asp-action="Register" method="post">
+    <div class="mb-3"><label>Email</label><input asp-for="User_Email" class="form-control" /></div>
+    <div class="mb-3"><label>Password</label><input asp-for="User_Password" type="password" class="form-control" /></div>
+    <div class="mb-3"><label>Role</label><select asp-for="User_Role" class="form-control"><option>Participant</option><option>Organiser</option></select></div>
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <button class="btn btn-primary">Register</button>
+</form>

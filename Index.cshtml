@@ -1,0 +1,13 @@
+﻿@model List<RaceDay.Web.ViewModels.EventViewModel>
+<h1>Welcome to RaceDay</h1>
+<p>Find your next race, enrol, and track your results.</p>
+<a href="/Participant/Home" class="btn btn-primary">Browse Events</a>
+<h3 class="mt-4">Upcoming Events</h3>
+@foreach (var e in Model)
+{
+    <div class="card p-3 mb-2"><h5>@e.Event_Name</h5><p>@e.Event_Venue - @e.Event_StartTime.ToString("dd MMM yyyy HH:mm")</p><a href="/Participant/Details/@e.Event_ID" class="btn btn-sm btn-outline-primary">View Details</a></div>
+}
+@if (!Model.Any())
+{
+    <p>No upcoming events yet.</p>
+}

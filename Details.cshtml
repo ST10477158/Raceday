@@ -1,0 +1,16 @@
+﻿@model RaceDay.Web.ViewModels.EventViewModel
+<h2>@Model.Event_Name</h2>
+<p>@Model.Event_Description</p><p><b>Venue:</b> @Model.Event_Venue</p><p><b>Start:</b> @Model.Event_StartTime</p>
+<h4>Categories</h4>
+@foreach (var c in (List<RaceDay.Web.ViewModels.CategoryViewModel>)ViewBag.Categories)
+{
+    <form asp-action="Enrol" method="post" class="card p-3 mb-2"><input type="hidden" name="eventId" value="@Model.Event_ID" /><input type="hidden" name="categoryId" value="@c.Category_ID" /><h5>@c.Category_Name - R@c.Category_EntryAmount - Age @c.Category_QualifyAge+</h5><button class="btn btn-success">Enrol</button></form>
+}
+<h4>Routes</h4>
+@foreach (var r in (List<RaceDay.Web.ViewModels.RouteViewModel>)ViewBag.Routes)
+{
+    <div class="card p-3 mb-2"><h5>@r.Route_Name - @r.Route_Distance km</h5>@if(!string.IsNullOrEmpty(r.Route_Map)){
+    <img src="@r.Route_Map" style="max-width:300px" />
+}
+</div>
+}

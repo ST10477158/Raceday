@@ -1,0 +1,11 @@
+﻿@model List<RaceDay.Web.ViewModels.EventViewModel>
+<h2>All Events</h2>
+<form method="get" class="d-flex gap-2 mb-3"><input name="search" placeholder="Search event" class="form-control" /><input name="venue" placeholder="Venue" class="form-control" /><button class="btn btn-primary">Search</button></form>
+@foreach (var e in Model)
+{
+    <div class="card p-3 mb-2"><h5>@e.Event_Name</h5><p>@e.Event_Description</p><p>@e.Event_Venue - @e.Event_StartTime</p><a href="/Participant/Details/@e.Event_ID" class="btn btn-primary">View Details</a></div>
+}
+@if (!Model.Any())
+{
+    <p>No events found.</p>
+}

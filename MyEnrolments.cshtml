@@ -1,0 +1,10 @@
+﻿@model List<RaceDay.Web.ViewModels.EnrolmentViewModel>
+<h2>My Enrolments</h2>
+@foreach (var e in Model)
+{
+    <div class="card p-3 mb-2"><h5>@e.Event_Name - @e.Category_Name</h5><p>Race Number: @e.Race_Number | Entry: R@e.Category_EntryAmount | Date: @e.Enrolment_Date.ToString("dd MMM yyyy")</p></div>
+}
+@if (!Model.Any())
+{
+    <p>You have no enrolments yet. <a href="/Participant/Home">Browse events</a></p>
+}

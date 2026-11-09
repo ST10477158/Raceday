@@ -1,0 +1,10 @@
+﻿@model List<RaceDay.Web.ViewModels.EventViewModel>
+<h2>My Events</h2><a href="/Organiser/CreateEvent" class="btn btn-primary mb-3">Create Event</a>
+@foreach (var e in Model)
+{
+    <div class="card p-3 mb-2"><h5>@e.Event_Name</h5><p>@e.Event_Venue - @e.Event_StartTime</p><a href="/Organiser/EditEvent/@e.Event_ID" class="btn btn-sm btn-warning">Edit</a> <a href="/Organiser/Categories?eventId=@e.Event_ID" class="btn btn-sm btn-info">Categories</a> <a href="/Organiser/Routes?eventId=@e.Event_ID" class="btn btn-sm btn-secondary">Routes</a> <a href="/Organiser/Enrolments?eventId=@e.Event_ID" class="btn btn-sm btn-success">Enrolments</a> <a href="/Organiser/DeleteEvent/@e.Event_ID" class="btn btn-sm btn-danger">Delete</a></div>
+}
+@if (!Model.Any())
+{
+    <p>No events yet. Create one.</p>
+}

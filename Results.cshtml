@@ -1,0 +1,9 @@
+﻿@model List<RaceDay.Web.ViewModels.ResultViewModel>
+<h2>Results for Event @ViewBag.Event_ID</h2>
+<table class="table">
+    <tr><th>Enrolment</th><th>Finish Time</th><th>Position</th><th>Pace</th></tr>
+    @foreach (var r in Model)
+    {
+        <tr><td>@r.Enrolment_ID</td><td>@r.Finish_Time</td><td>@r.Finish_Position</td><td>@r.Average_Pace</td></tr>
+    }
+</table>

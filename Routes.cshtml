@@ -1,0 +1,4 @@
+﻿@model List<RaceDay.Web.ViewModels.RouteViewModel>
+<h2>Routes for Event @ViewBag.Event_ID</h2>
+<form asp-action="AddRoute" method="post" enctype="multipart/form-data"><input type="hidden" name="Event_ID" value="@ViewBag.Event_ID" /><input name="Route_Name" placeholder="Route Name" class="form-control mb-2" /><input name="Route_Distance" placeholder="Distance km" class="form-control mb-2" /><label>Route Map Image</label><input type="file" name="MapImage" class="form-control mb-2" /><button class="btn btn-primary">Add Route</button></form>
+@foreach(var r in Model){<div class="card p-3 mt-2">@r.Route_Name - @r.Route_Distance km @if(!string.IsNullOrEmpty(r.Route_Map)){<br/><img src="@r.Route_Map" style="max-width:300px" />}</div>}

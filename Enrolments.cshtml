@@ -1,0 +1,9 @@
+﻿@model List<RaceDay.Web.ViewModels.EnrolmentViewModel>
+<h2>Enrolments for Event @ViewBag.Event_ID</h2>
+<table class="table">
+    <tr><th>Enrolment ID</th><th>Participant</th><th>Category</th><th>Race Number</th><th>Action</th></tr>
+    @foreach (var e in Model)
+    {
+        <tr><td>@e.Enrolment_ID</td><td>@e.Participant_ID</td><td>@e.Category_ID</td><td>@e.Race_Number</td><td><a href="/Organiser/AddResult?enrolmentId=@e.Enrolment_ID&eventId=@ViewBag.Event_ID" class="btn btn-sm btn-primary">Add Result</a></td></tr>
+    }
+</table>

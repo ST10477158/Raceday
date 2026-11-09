@@ -1,0 +1,8 @@
+﻿@model List<RaceDay.Web.ViewModels.EventViewModel>
+<h2>Organiser Dashboard</h2><p>Total Events: @ViewBag.TotalEvents</p>
+<a href="/Organiser/CreateEvent" class="btn btn-primary">Create Event</a> <a href="/Organiser/Events" class="btn btn-secondary">My Events</a>
+<h4 class="mt-3">Upcoming</h4>
+@foreach (var e in (List<RaceDay.Web.ViewModels.EventViewModel>)ViewBag.Upcoming)
+{
+    <div class="card p-3 mb-2">@e.Event_Name - @e.Event_StartTime</div>
+}
